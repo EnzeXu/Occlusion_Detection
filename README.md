@@ -13,7 +13,6 @@ Occlusion Detection
 * [4 Getting Started](#4-getting-started)
   * [4.1 Preparations](#41-preparations)
   * [4.2 Install Packages](#42-install-packages)
-  * [4.3 Build Datasets](#43-build-datasets)
 * [5 Questions](#5-questions)
 
 
