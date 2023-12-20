@@ -18,7 +18,12 @@ Occlusion Detection
 
 
 # 1. Introduction
-Invariant Physics. [TODO]
+Occlusion anomalies in autonomous driving pose a significant safety concern, resulting from obstructions by foreign objects such as plastic bags, newspapers, or leaves that interfere with the vehicle's cameras. These occlusions can lead to distorted video feeds, incorrect decisions, and potential accidents, while also consuming valuable storage, communication, and computing resources. Detecting occlusion anomalies accurately is vital for timely warnings and overall system reliability.
+
+Existing methods often rely on object detection techniques, but they struggle to detect various occlusion types and lack generalization. To address these challenges, we propose a novel approach. We redefine occlusion detection as immobile object detection, enabling the model to handle unexpected occlusion objects and enhance generalization. We introduce foreground-background separation and a persistence threshold to improve accuracy. We curate a dedicated dataset for evaluation from both open-source datasets and our first-hand dataset, achieving an accuracy of 98.60\% and an F1 score of 0.8293.
+
+In summary, our work advances occlusion detection in autonomous driving, offering improved generalization and accuracy in a dynamic environment.
+Code is available at https://github.com/EnzeXu/Occlusion_Detection.
 
 # 2. Citation
 
