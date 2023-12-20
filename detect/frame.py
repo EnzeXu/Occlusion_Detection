@@ -164,7 +164,7 @@ def one_time_process_video(video_name, frame_speed=5, video_speed=30, period=Non
 
     print(f"[Step 8] Plotting from {output_folder_cut} to {output_folder_plot}...")
     iou_threshold = 0.75
-    occlusion_time_threshold = 5.0
+    occlusion_time_threshold = 2.0#5.0
     t_unit = 1.0 / video_speed * frame_speed
     plot_file_names = [os.path.join(output_folder_plot, item) for item in cut_filename_list]
     plot_file_names = sorted(plot_file_names)
@@ -189,7 +189,7 @@ def one_time_process_video(video_name, frame_speed=5, video_speed=30, period=Non
         plot_list = [
             ("blue", f"   Max IoU: {iou_list[i]:.6f}  "),
             ("blue", f"Accum Time: {time_accumulated:.6f}s "),
-            ("green", f"    Status: Safe      ") if not occlusion_flag else (("red", f"    Status: Occlusion!") if i % 2 == 0 else ("red", f"    Status:           "))
+            ("green", f"    Status: Safe      ") if not occlusion_flag else (("red", f"    Status: Occlusion!") if i % 1 == 0 else ("red", f"    Status:           ")) # 2
         ]
         plot_text(plot_file_names[i].replace("/plot/", "/cut/"), plot_file_names[i], plot_list, edge_node_list_all[i])
     print("Done")
@@ -390,25 +390,25 @@ def make_meta(folder_path, output_file):
 
 def one_time_job():
     job_list = [
-        ["NO20231218-170418-001549F.MP4", 0],
-        ["NO20231218-170418-001549F.MP4", 20],
-        ["NO20231218-170418-001549F.MP4", 40],
-
-        ["NO20231218-170518-001550F.MP4", 0],
-        ["NO20231218-170518-001550F.MP4", 20],
-        ["NO20231218-170518-001550F.MP4", 40],
-
-        ["NO20231218-170618-001551F.MP4", 0],
-        ["NO20231218-170618-001551F.MP4", 20],
-        ["NO20231218-170618-001551F.MP4", 40],
-
-        ["NO20231218-170718-001552F.MP4", 0],
-        ["NO20231218-170718-001552F.MP4", 20],
-        ["NO20231218-170718-001552F.MP4", 40],
-
-        ["NO20231218-170818-001553F.MP4", 0],
-        ["NO20231218-170818-001553F.MP4", 20],
-        ["NO20231218-170818-001553FP4", 40],
+        # ["NO20231218-170418-001549F.MP4", 0],
+        # ["NO20231218-170418-001549F.MP4", 20],
+        # ["NO20231218-170418-001549F.MP4", 40],
+        #
+        # ["NO20231218-170518-001550F.MP4", 0],
+        # ["NO20231218-170518-001550F.MP4", 20],
+        # ["NO20231218-170518-001550F.MP4", 40],
+        #
+        # ["NO20231218-170618-001551F.MP4", 0],
+        # ["NO20231218-170618-001551F.MP4", 20],
+        # ["NO20231218-170618-001551F.MP4", 40],
+        #
+        # ["NO20231218-170718-001552F.MP4", 0],
+        # ["NO20231218-170718-001552F.MP4", 20],
+        # ["NO20231218-170718-001552F.MP4", 40],
+        #
+        # ["NO20231218-170818-001553F.MP4", 0],
+        # ["NO20231218-170818-001553F.MP4", 20],
+        ["NO20231218-170818-001553F.MP4", 40],
 
         ["NO20231218-170918-001554F.MP4", 0],
         ["NO20231218-170918-001554F.MP4", 20],
@@ -456,7 +456,7 @@ def one_time_job():
     for i, one_pair in tqdm(enumerate(job_list)):
         period = [one_pair[1], one_pair[1] + length]
         timestamp = get_now_string()
-        print(f"\n\n######################################################################### [{i:04d} / {len(job_list):04d}] Processing {one_pair[0]}: period = {period}, timestamp = {timestamp} #########################################################################")
+        print(f"\n\n######################################################################### [{i+1:04d} / {len(job_list):04d}] Processing {one_pair[0]}: period = {period}, timestamp = {timestamp} #########################################################################")
         one_time_process_video(one_pair[0], frame_speed=5, video_speed=30, period=period, timestamp=timestamp)
 
 
@@ -465,11 +465,13 @@ if __name__ == "__main__":
     # one_time_process_video("C0018.MP4", frame_speed=3, video_speed=60, period=[8.5, 10.5])
     # one_time_process_video("NO20231118-163917-000538F.MP4", frame_speed=5, video_speed=30, period=[20, 26])
     # one_time_process_video("NO20231118-164417-000543F.MP4", frame_speed=5, video_speed=30, period=[40, 60])
+    one_time_process_video("NO20231118-164417-000543F.MP4", frame_speed=5, video_speed=30, period=[42, 48])
     # one_time_process_video("NO20231118-164217-000541F.MP4", frame_speed=5, video_speed=30, period=[9, 29])
     # one_time_process_video("NO20231118-165217-000551F.MP4", frame_speed=5, video_speed=30, period=[40, 60])
     # one_time_process_video("NO20231118-172246-000584F.MP4", frame_speed=5, video_speed=30, period=[40, 60])
     # one_time_process_video("NO20231118-170705-000567F.MP4", frame_speed=5, video_speed=30, period=[40, 60])
-    one_time_process_video("NO20231218-170418-001549F.MP4", frame_speed=5, video_speed=30, period=[7, 27])
+    # one_time_process_video("NO20231218-170418-001549F.MP4", frame_speed=5, video_speed=30, period=[7, 27])
+    # one_time_job()
     # one_time_process_video("d466f0e0-c9b6897c.mov", frame_speed=5, video_speed=30, period=[0, 20])
     # map = np.array([[1, 1, 2, 2],
     #                 [1, 1, 2, 2],
