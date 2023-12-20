@@ -3,7 +3,7 @@ Occlusion Detection
 
 ![occlusion_results_compressed](https://github.com/EnzeXu/Occlusion_Detection/assets/90367338/5f95924b-a4c3-4f36-8f22-604f041decc4)
 
-===
+
 
 # Contents
 
